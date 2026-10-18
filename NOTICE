@@ -1,0 +1,21 @@
+eda-cuda
+Copyright 2026 Giorgio Angelotti
+
+Licensed under the Apache License, Version 2.0; see LICENSE.
+
+Third-party components keep their own licenses. Their texts are in cpp/licenses.
+
+Compiled into the binaries
+- nanobind, BSD-3-Clause, in the Python extension. cpp/licenses/nanobind.txt
+- robin-map, MIT, part of nanobind. cpp/licenses/robin_map.txt
+- NVIDIA CUDA runtime (cudart), linked statically, a redistributable component under the NVIDIA
+  CUDA Toolkit End User License Agreement: https://docs.nvidia.com/cuda/eula/
+- GCC runtime libraries libstdc++ and libgcc, linked statically, GPL-3.0-or-later WITH
+  GCC-exception-3.1 (the GCC Runtime Library Exception lets the compiled program carry its own
+  license): https://www.gnu.org/licenses/gcc-exception-3.1.html
+- NVIDIA CCCL, only its version header cuda/std/version, Apache-2.0 WITH LLVM-exception.
+
+Used at run time, not redistributed
+- NVIDIA cuFFT, from the nvidia-cufft package (eda-cuda) or the nvidia-cufft-cu12 package
+  (eda-cuda-cu12), under NVIDIA's license.
+- NumPy, BSD-3-Clause.

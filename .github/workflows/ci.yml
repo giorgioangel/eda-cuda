@@ -1,0 +1,83 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (C) 2026 Giorgio Angelotti
+name: CI
+
+# CPU only: these runners have no NVIDIA GPU, so the GPU tests run locally.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          enable-cache: false
+      - name: Check that uv.lock is up to date
+        run: uv lock --locked
+      - name: Lint Python
+        run: uv run --no-project --group dev ruff check .
+      - name: Check the shell script
+        run: shellcheck tools/sanitize.sh tools/build_wheels.sh
+      - name: Check the benchmark's argument parsing and size table
+        run: python3 examples/benchmark.py --list
+      - name: Check the naming rule
+        run: >
+          PYTHONPATH=src uv run --no-project --with pytest --with numpy
+          python -m pytest -q tests/python/test_api.py::test_no_legacy_names
+
+  wheel:
+    name: wheel and tests (CUDA 13.0, Python 3.12)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    # The CUDA image has no git; checkout downloads the tree instead.
+    container: nvidia/cuda:13.0.1-devel-ubuntu22.04
+    env:
+      CMAKE_BUILD_PARALLEL_LEVEL: "4"
+      CUDA_VISIBLE_DEVICES: ""
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          enable-cache: false
+      - name: Build the wheel
+        run: |
+          uv python install 3.12
+          CUDAARCHS=89-real uv build --wheel --python 3.12
+      - name: Install the wheel and run the CPU tests
+        run: |
+          uv venv build/installed --python 3.12
+          uv pip install --python build/installed/bin/python dist/eda_cuda-*.whl pytest nanobind==3.1.0
+          build/installed/bin/python -I -m pytest tests/python -m "not gpu" -q
+      - name: Build and run the C++ tests that need no GPU
+        run: |
+          uv venv build/tools --python 3.12
+          uv pip install --python build/tools/bin/python cmake ninja
+          export PATH="$PWD/build/tools/bin:$PATH"
+          cmake -S . -B build/tests -G Ninja -DCMAKE_BUILD_TYPE=Release -DEDA_BUILD_PYTHON=OFF \
+            -DEDA_BUILD_TESTS=ON -DCMAKE_CUDA_ARCHITECTURES=89-real
+          cmake --build build/tests
+          ctest --test-dir build/tests --output-on-failure -L cpu --no-tests=ignore

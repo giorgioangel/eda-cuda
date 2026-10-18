@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: Apache-2.0
+// Registry of every EDA_* environment variable (X-macro, included by env.cpp). Every variable is a
+// boolean (1/0, true/false, on/off, yes/no; empty = unset). The library rejects unregistered
+// EDA_* names and invalid values.
+//
+// EDA_ENV(name, default, description); the description documents the variable here only.
+EDA_ENV("EDA_SANITIZE", "0",
+           "Sanitizer support: the workspace arena runs in debug mode (one device allocation per "
+           "slice, allocated afresh on every bind and filled with 0xFF bytes, NaN, unless "
+           "EDA_ARENA_POISON=0), the output rows are zeroed before use, and the tests shrink their "
+           "shapes.")
+EDA_ENV("EDA_ARENA_POISON", "1",
+           "In arena debug mode (EDA_SANITIZE), fill new slices with 0xFF bytes so that stale reads "
+           "produce NaN. Set 0 for initcheck, which counts any fill as initialization and would otherwise not "
+           "report reads of never-written workspace.")

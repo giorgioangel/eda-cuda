@@ -1,0 +1,127 @@
+{
+ "cases": {
+  "amfm_512": {
+   "conditioning_class": "stable",
+   "dtype": "float64",
+   "n_modes": 5,
+   "provenance": "float64 reference prototype of the predecessor implementation, commit c0cbc82",
+   "reconstruction_rel_err": 1.5879753385200616e-16,
+   "sha256_modes": "b614cad43157c3b16db6743d2b592609e466e690577426c5ba9f4552f9cf3cc7",
+   "sha256_original_file": "179c6484f67556a381ee4ea677b5843c6abd26835d5bc55e0a77a2346427ab39",
+   "sha256_x": "c8597db6b6777edbf7e70bddae563b55712c253f56bd1e932b063687bc3b9e8a",
+   "shape": [
+    512
+   ]
+  },
+  "blobs_3d_32": {
+   "conditioning_class": "stable",
+   "dtype": "float64",
+   "n_modes": 3,
+   "provenance": "float64 reference prototype of the predecessor implementation, commit c0cbc82",
+   "reconstruction_rel_err": 1.1439431506710905e-16,
+   "sha256_modes": "c1318bcc4256258287b6cf78313a52c858a35998b24499d856e42746a8eec095",
+   "sha256_original_file": "032e792fa0ac12511c0205647ad3bca1b47f308aa5f64c4e5c821019390793ad",
+   "sha256_x": "0c13300727d7700206f5d09f5b7d61fc5f5002164fa88ef34013a66d700fa60f",
+   "shape": [
+    32,
+    32,
+    32
+   ]
+  },
+  "chirp_2048": {
+   "conditioning_class": "stable",
+   "dtype": "float64",
+   "n_modes": 6,
+   "provenance": "float64 reference prototype of the predecessor implementation, commit c0cbc82",
+   "reconstruction_rel_err": 3.3306697911575995e-16,
+   "sha256_modes": "8aca6de00a27ca680916ae0da5754df6ca23f4a37f2ac40d940129a41bc66da3",
+   "sha256_original_file": "169f88cc0eac2aabaef6420457d7b9d3588cc7e520c89a60d66e407098e23709",
+   "sha256_x": "574190ea3e1763b986925f8e37370cb177df6afc7c70c9ae1a3366a1150dc165",
+   "shape": [
+    2048
+   ]
+  },
+  "fringe_2d_64": {
+   "conditioning_class": "stable",
+   "dtype": "float64",
+   "n_modes": 3,
+   "provenance": "float64 reference prototype of the predecessor implementation, commit c0cbc82",
+   "reconstruction_rel_err": 1.346596115879316e-16,
+   "sha256_modes": "a5ce68f537ed545a2b8c7d987f40ab9a550f331da19743523f1ec0c951485055",
+   "sha256_original_file": "d09ae29057c93530256bdbbace2d1072880a69c8818726d24c9f8f7d92e1d4cd",
+   "sha256_x": "4edf33de73cb946a95b21580833c053166d399bf8785a3e0f5dd73015be98fa7",
+   "shape": [
+    64,
+    64
+   ]
+  },
+  "g3blobs_2d_64": {
+   "conditioning_class": "stable",
+   "dtype": "float64",
+   "n_modes": 4,
+   "provenance": "float64 reference prototype of the predecessor implementation, commit c0cbc82",
+   "reconstruction_rel_err": 2.114548779439641e-16,
+   "sha256_modes": "18e3c557c729c5a678caeb999db4b60e4c3d64320d5b9d6179a01a908fa0872e",
+   "sha256_original_file": "30e18862fc600220f3a7d9ac6890a3a08a799b7217a365e5adeda58b095f723f",
+   "sha256_x": "331b588192c058286d54c1b72c91a8271cbe20540449609e7287145e6ea82502",
+   "shape": [
+    64,
+    64
+   ]
+  },
+  "gabor_2d_64": {
+   "conditioning_class": "stable",
+   "dtype": "float64",
+   "n_modes": 3,
+   "provenance": "float64 reference prototype of the predecessor implementation, commit c0cbc82",
+   "reconstruction_rel_err": 1.2834081675003707e-16,
+   "sha256_modes": "b42f7f3bf6dcdc0ce284794009d855e66c60d03008663c435bb3bd225ee1ae63",
+   "sha256_original_file": "2e14dd64a020f688bc9b0345702f6fa1be2c7099eb939cdd5c559186b9f6db2a",
+   "sha256_x": "23320cb9436298114da7edb60f359e580ec447970a746daedb879d5b2866aa8a",
+   "shape": [
+    64,
+    64
+   ]
+  },
+  "gabor_512": {
+   "conditioning_class": "stable",
+   "dtype": "float64",
+   "n_modes": 3,
+   "provenance": "float64 reference prototype of the predecessor implementation, commit c0cbc82",
+   "reconstruction_rel_err": 1.0241610047256278e-16,
+   "sha256_modes": "f401fe312be0cb5d67762b6be73b9917dbc67d486142bd75f2af439aa9fd2fa7",
+   "sha256_original_file": "cd36dcc7cc2d5bd44ef802c2c2b771e3931c9a24aeef8aa1ee2d6ad77021d1ee",
+   "sha256_x": "b8674e7c1b4ddfc53488ecef886245307e7d3e58c97fcd187ec58b20767f106a",
+   "shape": [
+    512
+   ]
+  },
+  "noiseflat_512": {
+   "conditioning_class": "stable",
+   "dtype": "float64",
+   "n_modes": 7,
+   "provenance": "float64 reference prototype of the predecessor implementation, commit c0cbc82",
+   "reconstruction_rel_err": 1.309666572503304e-16,
+   "sha256_modes": "0a55ff37aa15084e7ebf22cd975539cf0a531bef730bf08e8985c669e486c5b7",
+   "sha256_original_file": "5ecd3ce551f1f8d2d0fb54fa16ca4a83a81a2b6ccd399928bc562650bd1aee75",
+   "sha256_x": "b9a2b2cfc1e7174ce75599715b0733011d05af3e81daa8a2855544a81e22c113",
+   "shape": [
+    512
+   ]
+  },
+  "tones_2048": {
+   "conditioning_class": "stable",
+   "dtype": "float64",
+   "n_modes": 6,
+   "provenance": "float64 reference prototype of the predecessor implementation, commit c0cbc82",
+   "reconstruction_rel_err": 2.45855953173113e-16,
+   "sha256_modes": "88defb6b44bd9974930f12761b12588d82592b28df0e65a04a16b16a0dc3d9e2",
+   "sha256_original_file": "f55ea1733b1c449189f9a412789407fcb381e45999d39db5ceb125e3a250e1ef",
+   "sha256_x": "12ca0e489d321a941a708abc2f77417dd56c832be8f586b06edacd71cf38bb59",
+   "shape": [
+    2048
+   ]
+  }
+ },
+ "corpus_version": 1
+}
