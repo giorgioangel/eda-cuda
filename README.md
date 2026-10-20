@@ -189,11 +189,12 @@ modes, so they include the errors of the decomposition itself.*
 
 ![The amplitude, phase and direction of the rings and the wavy stripes of the image at the top](docs/images/monogenic-2d.png)
 
-*The first two modes of the image at the top. The direction of the rings is radial, and that of the wavy stripes turns as they bend. The measured frequency gives a median
-period of 6.9 pixels for the rings (the true period is 7) and of 35.2 pixels for the stripes (the
-true period goes from 27 to 41). The amplitude runs from white (zero) to red. The phase is light
-at a crest and dark in a trough, and fades to grey where the mode is weak. The direction is drawn
-as short segments across the stripes, longer where the stripes have one clear direction.*
+*The first two modes of the image at the top. The direction of the rings is radial, and that of the
+wavy stripes turns as they bend. The measured frequency gives a median period of 6.9 pixels for the
+rings (the true period is 7) and of 35.2 pixels for the stripes (the true period goes from 27 to
+41). The amplitude runs from white (zero) to red. The phase is light at a crest and dark in a
+trough, and fades to grey where the mode is weak. The direction is drawn as short segments across
+the stripes, longer where the stripes have one clear direction.*
 
 `eda.decompose(..., return_orientation=True)` also returns the direction and the coherence that
 eda used to turn its window in each mode. They describe what was left of the input before the
@@ -247,9 +248,21 @@ next in most places, which keeps the modes ordered from fine to coarse.
 
 ### Direction
 
-To find the direction across the stripes, eda first keeps only the part of the data with wiggles about the size of the current mode, and then asks which way those wiggles run. It uses first- and second-order Riesz transforms, so the direction remains measurable at both crests and troughs.
+To find the direction across the stripes, eda first keeps only the part of the data with wiggles
+about the size of the current mode, and then asks which way those wiggles run. It uses first- and
+second-order Riesz transforms, so the direction remains measurable at both crests and troughs.
 
-In more detail, b is the residual filtered by a one-octave log-Gabor filter centred at the frequency f₀ = 1/w, and R₁ = (R_a b) and R₂ = (R_a R_b b) are its first- and second-order Riesz transforms. For a plane wave of orientation k̂ and amplitude A, the energy tensor T = R₁R₁ᵀ + R₂R₂ᵀ equals A²k̂k̂ᵀ at every phase, because sin² + cos² = 1. Unlike the pointwise gradient tensor, it does not vanish at crests and troughs. The direction n is the top eigenvector of T. It defines an axis rather than a signed direction: n and −n describe the same orientation. The coherence c = (μ₁ − μ₂)/(μ₁ + μ₂), computed from the two largest eigenvalues, measures how strongly one orientation dominates: 0 means no dominant orientation, and 1 means a single dominant orientation. The window B(x) is a cube of side d = L(1 − 3c/4) swept along ±(3/8)cL·n. It is a cube of side L where the pattern has no dominant orientation, and a bar of length L across the stripes and L/4 wide where it has one.
+In more detail, b is the residual filtered by a one-octave log-Gabor filter centred at the frequency
+f₀ = 1/w, and R₁ = (R_a b) and R₂ = (R_a R_b b) are its first- and second-order Riesz transforms.
+For a plane wave of orientation k̂ and amplitude A, the energy tensor T = R₁R₁ᵀ + R₂R₂ᵀ equals
+A²k̂k̂ᵀ at every phase, because sin² + cos² = 1. Unlike the pointwise gradient tensor, it does not
+vanish at crests and troughs. The direction n is the top eigenvector of T. It defines an axis rather
+than a signed direction: n and −n describe the same orientation. The coherence
+c = (μ₁ − μ₂)/(μ₁ + μ₂), computed from the two largest eigenvalues, measures how strongly one
+orientation dominates: 0 means no dominant orientation, and 1 means a single dominant orientation.
+The window B(x) is a cube of side d = L(1 − 3c/4) swept along ±(3/8)cL·n. It is a cube of side L
+where the pattern has no dominant orientation, and a bar of length L across the stripes and L/4
+wide where it has one.
 
 ### Envelopes
 
